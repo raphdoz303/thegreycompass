@@ -1,0 +1,19 @@
+{
+  "id": "gc-w41-03-eu-eco",
+  "week": "Week 41",
+  "date": "2025-10-12",
+  "number": "#3",
+  "title": "Europe plans to use frozen Russian money for Ukraine",
+  "region": "Europe",
+  "axes": ["Economy", "Sanctions", "Governance"],
+  "observedIndicator": "European Union finance ministers approved channeling profits from immobilized Russian central-bank reserves to raise funds for Ukraine's defense and reconstruction.",
+  "systemicContext": "Since 2022, roughly €200 billion in Russian sovereign assets have been held in EU and G7 custody; debate shifted from legality of seizure to use of generated interest.",
+  "structuralSignal": "Financial infrastructure becomes an extension of sanctions strategy, transforming frozen assets into war-support instruments.",
+  "projectedImpact": "Creates a precedent for 'sanctions-finance' tools; Moscow may accelerate reserve diversification toward non-Western custodians.",
+  "sources": [
+    "AFP",
+    "TASS",
+    "UN News"
+  ],
+  "fieldLocation": "50.8366385031131, 4.375076313341347"
+}
