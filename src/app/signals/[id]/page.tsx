@@ -9,8 +9,13 @@ const signals: { [key: string]: any } = {
   'gc-w41-03-eu-eco': signal1,
 };
 
-export default function SignalPage({ params }: { params: { id: string } }) {
-  const signal = signals[params.id];
+export default async function SignalPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
+  const { id } = await params;
+  const signal = signals[id];
   
   // If signal doesn't exist, show 404
   if (!signal) {
