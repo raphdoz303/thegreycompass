@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Import all signal JSON files
 import signal1 from '@/data/signals/gc-w41-03-eu-eco.json';
@@ -22,6 +23,9 @@ export default async function SignalPage({
     notFound();
   }
 
+  // Convert field location to Google Maps URL
+  const mapsUrl = `https://www.google.com/maps?q=${signal.fieldLocation}`;
+
   return (
     <div className="min-h-screen bg-gc-bg-primary">
       {/* Back button */}
@@ -35,17 +39,42 @@ export default async function SignalPage({
       </div>
 
       {/* Signal Header */}
-      <header className="max-w-4xl mx-auto px-8 py-12 border-b border-gc-border">
-        <div className="flex items-center justify-between mb-6 font-mono text-xs text-gc-text-subtitle tracking-wider">
-          <span>WEEKLY COMPASS · {signal.date}</span>
-          <span className="text-4xl font-heading text-gc-text-heading">{signal.number}</span>
+      <header className="max-w-4xl mx-auto px-8 py-12">
+        {/* Top divider */}
+        <div className="border-t border-gc-border mb-6" />
+        
+        {/* Centered metadata */}
+        <div className="text-center mb-6 font-mono text-xs text-gc-text-subtitle tracking-wider">
+          WEEKLY COMPASS · {signal.date}
         </div>
         
-        <h1 className="font-heading text-5xl text-gc-text-heading mb-6 leading-tight">
-          {signal.title}
-        </h1>
+        {/* Divider */}
+        <div className="border-t border-gc-border mb-8" />
         
-        <div className="font-mono text-xs text-gc-text-subtitle tracking-widest">
+        {/* Logo + Title */}
+        <div className="flex items-center gap-6 mb-8 ml-8">
+          <img 
+            src="/logo/logo.png" 
+            alt="The Grey Compass" 
+            width="96"
+            height="96"
+            className="flex-shrink-0 opacity-60"
+          />
+          <h1 className="font-heading text-4xl text-gc-text-heading leading-tight flex-1 line-clamp-2" style={{ 
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden'
+          }}>
+            {signal.title}
+          </h1>
+        </div>
+        
+        {/* Divider */}
+        <div className="border-t border-gc-border mb-4" />
+        
+        {/* ID Code - centered */}
+        <div className="text-center font-mono text-xs text-gc-text-subtitle tracking-widest">
           {signal.id.toUpperCase()}
         </div>
       </header>
@@ -54,10 +83,10 @@ export default async function SignalPage({
       <main className="max-w-4xl mx-auto px-8 py-12 space-y-12">
         {/* Block 1: Observed Indicator */}
         <section>
-          <h2 className="font-mono text-sm text-gc-text-subtitle tracking-widest mb-4">
-            OBSERVED INDICATOR:
+          <h2 className="font-mono text-base text-gc-text-subtitle tracking-widest mb-4 uppercase">
+            Observed Indicator:
           </h2>
-          <p className="font-body text-base text-gc-text-body leading-relaxed">
+          <p className="text-sm text-gc-text-body leading-relaxed" style={{ fontFamily: 'IBM Plex Mono, monospace' }}>
             {signal.observedIndicator}
           </p>
           <p className="font-mono text-xs text-gc-text-subtitle mt-4 italic">
@@ -69,10 +98,10 @@ export default async function SignalPage({
 
         {/* Block 2: Systemic Context */}
         <section>
-          <h2 className="font-mono text-sm text-gc-text-subtitle tracking-widest mb-4">
-            SYSTEMIC CONTEXT:
+          <h2 className="font-mono text-base text-gc-text-subtitle tracking-widest mb-4 uppercase">
+            Systemic Context:
           </h2>
-          <p className="font-body text-base text-gc-text-body leading-relaxed">
+          <p className="text-sm text-gc-text-body leading-relaxed" style={{ fontFamily: 'IBM Plex Mono, monospace' }}>
             {signal.systemicContext}
           </p>
         </section>
@@ -81,10 +110,10 @@ export default async function SignalPage({
 
         {/* Block 3: Structural Signal */}
         <section>
-          <h2 className="font-mono text-sm text-gc-accent-blue tracking-widest mb-4">
-            STRUCTURAL SIGNAL:
+          <h2 className="font-mono text-base text-gc-text-subtitle tracking-widest mb-4 uppercase">
+            Structural Signal:
           </h2>
-          <p className="font-body text-base text-gc-text-body leading-relaxed">
+          <p className="text-sm text-gc-text-body leading-relaxed" style={{ fontFamily: 'IBM Plex Mono, monospace' }}>
             {signal.structuralSignal}
           </p>
         </section>
@@ -93,30 +122,40 @@ export default async function SignalPage({
 
         {/* Block 4: Projected Impact */}
         <section>
-          <h2 className="font-mono text-sm text-gc-text-subtitle tracking-widest mb-4">
-            PROJECTED IMPACT:
+          <h2 className="font-mono text-base text-gc-text-subtitle tracking-widest mb-4 uppercase">
+            Projected Impact:
           </h2>
-          <p className="font-body text-base text-gc-text-body leading-relaxed">
+          <p className="text-sm text-gc-text-body leading-relaxed" style={{ fontFamily: 'IBM Plex Mono, monospace' }}>
             {signal.projectedImpact}
           </p>
         </section>
       </main>
 
       {/* Footer metadata */}
-      <footer className="max-w-4xl mx-auto px-8 py-12 border-t border-gc-border">
-        <div className="flex flex-wrap gap-4 font-mono text-xs text-gc-text-subtitle">
-          {signal.axes.map((axis: string) => (
-            <span key={axis} className="uppercase tracking-wider">
-              {axis}
-            </span>
-          ))}
-          <span>·</span>
+      <footer className="max-w-4xl mx-auto px-8 py-12">
+        <div className="border-t border-gc-border mb-6" />
+        
+        <div className="flex justify-between items-start font-mono text-xs text-gc-text-subtitle">
+          <div className="flex flex-wrap gap-4">
+            {signal.axes.map((axis: string) => (
+              <span key={axis} className="uppercase tracking-wider">
+                {axis}
+              </span>
+            ))}
+          </div>
           <span className="italic">{signal.region}</span>
         </div>
         
-        <p className="font-mono text-xs text-gc-text-subtitle mt-6 opacity-60">
-          Field Location: {signal.fieldLocation}
-        </p>
+        <div className="text-center mt-6">
+          <a 
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs text-gc-text-body opacity-60 hover:opacity-100 hover:text-gc-accent-blue transition-all"
+          >
+            Field Location: {signal.fieldLocation}
+          </a>
+        </div>
       </footer>
     </div>
   );

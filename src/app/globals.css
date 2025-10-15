@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Better body text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Load local fonts */
 @font-face {
   font-family: 'Space Grotesk';

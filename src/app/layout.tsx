@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import NoiseOverlay from "@/components/NoiseOverlay";
 
 export const metadata: Metadata = {
   title: "The Grey Compass",
@@ -13,10 +14,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body 
-        className="font-body bg-gc-bg-primary text-gc-text-body"
-        suppressHydrationWarning
-      >
+      <body className="font-body bg-gc-bg-primary text-gc-text-body" suppressHydrationWarning>
+        <NoiseOverlay />
         {children}
       </body>
     </html>
