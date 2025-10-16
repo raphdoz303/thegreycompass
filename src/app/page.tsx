@@ -1,41 +1,121 @@
-import SignalCard from '@/components/SignalCard';
-import signalData from '@/data/signals/gc-w41-03-eu-eco.json';
+import HeroSection from '@/components/HeroSection';
+import LatestSignalsSection from '@/components/LatestSignalsSection';
+import WeeklySynthesisSection from '@/components/WeeklySynthesisSection';
+import NewsletterSection from '@/components/NewsletterSection';
+import FooterSection from '@/components/FooterSection';
+import fs from 'fs';
+import path from 'path';
+
+// Load all signals from nested structure
+function getAllSignals() {
+  const signalsDirectory = path.join(process.cwd(), 'src/data/signals');
+  const signals: any[] = [];
+  
+  try {
+    const years = fs.readdirSync(signalsDirectory)
+      .filter(item => {
+        const fullPath = path.join(signalsDirectory, item);
+        return fs.statSync(fullPath).isDirectory();
+      });
+    
+    years.forEach(year => {
+      const yearPath = path.join(signalsDirectory, year);
+      const weeks = fs.readdirSync(yearPath)
+        .filter(item => {
+          const fullPath = path.join(yearPath, item);
+          return fs.statSync(fullPath).isDirectory() && item.startsWith('week-');
+        });
+      
+      weeks.forEach(week => {
+        const weekPath = path.join(yearPath, week);
+        const files = fs.readdirSync(weekPath)
+          .filter(filename => 
+            filename.endsWith('.json') && 
+            !filename.includes('template') && 
+            !filename.includes('week-meta')
+          );
+        
+        files.forEach(filename => {
+          const filePath = path.join(weekPath, filename);
+          const fileContents = fs.readFileSync(filePath, 'utf8');
+          
+          if (fileContents.trim().length > 0) {
+            try {
+              signals.push(JSON.parse(fileContents));
+            } catch (error) {
+              console.error(`Failed to parse ${filename}:`, error);
+            }
+          }
+        });
+      });
+    });
+    
+    return signals.sort((a, b) => 
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    
+  } catch (error) {
+    console.error('Error loading signals:', error);
+    return [];
+  }
+}
+
+// Load week metadata for most recent week
+function getMostRecentWeekMeta() {
+  try {
+    const signalsDirectory = path.join(process.cwd(), 'src/data/signals');
+    const year = "2025"; // Hardcoded for now
+    const yearPath = path.join(signalsDirectory, year);
+    
+    const weeks = fs.readdirSync(yearPath)
+      .filter(item => {
+        const fullPath = path.join(yearPath, item);
+        return fs.statSync(fullPath).isDirectory() && item.startsWith('week-');
+      })
+      .sort()
+      .reverse(); // Get most recent week
+    
+    if (weeks.length === 0) return null;
+    
+    const mostRecentWeek = weeks[0];
+    const weekNumber = mostRecentWeek.replace('week-', '');
+    const metaPath = path.join(yearPath, mostRecentWeek, 'week-meta.json');
+    
+    const fileContents = fs.readFileSync(metaPath, 'utf8');
+    if (fileContents.trim().length > 0) {
+      return {
+        weekNumber,
+        meta: JSON.parse(fileContents)
+      };
+    }
+    
+    return null;
+  } catch (error) {
+    console.error('Error loading week meta:', error);
+    return null;
+  }
+}
 
 export default function Home() {
-  return (
-    <div className="min-h-screen p-8">
-      {/* Header */}
-      <header className="max-w-6xl mx-auto mb-12">
-        <h1 className="font-heading text-4xl text-gc-text-heading mb-2">
-          The Grey Compass
-        </h1>
-        <p className="font-mono text-sm text-gc-text-subtitle tracking-wide">
-          Global System Signals — updated weekly
-        </p>
-        <p className="font-body text-xs text-gc-text-body mt-1">
-          No ideology, no emotion — only structure and signal.
-        </p>
-      </header>
+  const signals = getAllSignals();
+  const weekData = getMostRecentWeekMeta();
 
-      {/* Signals Grid */}
-      <main className="max-w-6xl mx-auto">
-        <h2 className="font-mono text-xs text-gc-text-subtitle tracking-widest mb-6">
-          LATEST SIGNALS
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <SignalCard
-            id={signalData.id}
-            week={signalData.week}
-            date={signalData.date}
-            number={signalData.number}
-            title={signalData.title}
-            region={signalData.region}
-            axes={signalData.axes}
-            structuralSignal={signalData.structuralSignal}
-          />
-        </div>
-      </main>
+  return (
+    <div className="min-h-screen">
+      <HeroSection />
+      
+      <LatestSignalsSection signals={signals} />
+      
+      {weekData && (
+        <WeeklySynthesisSection 
+          weekNumber={weekData.weekNumber} 
+          weekMeta={weekData.meta} 
+        />
+      )}
+      
+      <NewsletterSection />
+      
+      <FooterSection />
     </div>
   );
 }

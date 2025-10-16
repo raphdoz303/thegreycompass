@@ -1,0 +1,19 @@
+{
+  "id": "XX",
+  "week": "Week 41",
+  "date": "2025-10-12",
+  "number": "#0",
+  "title": "XX",
+  "region": "XX",
+  "axes": ["XX", "XX", "XX"],
+  "observedIndicator": "XX",
+  "systemicContext": "XX",
+  "structuralSignal": "XX",
+  "projectedImpact": "XX",
+  "sources": [
+  { "name": "Reuters", "url": "https://www.reuters.com/..." },
+  { "name": "Xinhua", "url": "https://www.xinhuanet.com/..." },
+  { "name": "Al Jazeera", "url": "https://www.aljazeera.com/..." }
+  ],
+  "fieldLocation": "XX"
+}

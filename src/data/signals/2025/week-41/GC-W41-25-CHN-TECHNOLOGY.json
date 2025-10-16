@@ -1,0 +1,19 @@
+{
+  "id": "GC-W41-25-CHN-TECHNOLOGY",
+  "week": "Week 41",
+  "date": "2025-10-12",
+  "number": "#0",
+  "title": "China Expands Rare-Earth Export Controls, Weaponizing Materials Leverage Before APEC Summit",
+  "region": "East Asia (CHN)",
+  "axes": ["Economy", "Technology", "Governance"],
+  "observedIndicator": "On 2025-10-09, China’s Ministry of Commerce broadened export restrictions on rare-earth elements and magnet technologies, adding five minerals—holmium, erbium, thulium, europium, and ytterbium—to the existing list of twelve controlled materials. The new rules, effective 2025-12-01, extend to any product containing ≥0.1% Chinese-origin rare earths or using Chinese extraction processes, and ban exports to foreign militaries. The measure follows US tariff hikes of up to 145% on Chinese imports earlier in 2025 and precedes a planned Trump–Xi meeting at the APEC summit in South Korea.",
+  "systemicContext": "China commands roughly 70% of global rare-earth mining and over 90% of processing capacity—particularly for neodymium-iron-boron (NdFeB) magnets essential to EVs, wind turbines, and defense platforms. The United States, EU, and Japan maintain only months-long stockpiles, creating structural exposure. Washington’s export-control regime on semiconductors has already limited China’s chip access; Beijing’s response mirrors that model, applying extraterritorial licensing to industrial minerals. This reflects an evolution from resource dominance to regulatory control—an ability to shape not only supply but also legal jurisdiction over downstream technologies.",
+  "structuralSignal": "Beijing’s move institutionalizes resource weaponization symmetry: economic interdependence becomes an instrument of deterrence. By applying export licenses to global production chains, China asserts regulatory reach beyond its borders—echoing the U.S. Foreign Direct Product Rule used against Huawei and others. Western narratives frame this as coercive leverage; Chinese outlets describe it as a “defensive assertion of technological sovereignty.” Regionally, Japan, South Korea, and Australia view the shift as an early stress test of “friend-shoring” strategies. The 0.1% inclusion threshold effectively places most global EV, defense, and electronics firms within Beijing’s discretionary domain, tightening China’s position as a gatekeeper of magnet technology.",
+  "projectedImpact": "Expect a two-track global supply chain: one compliant with Chinese licensing, another aligned with Western diversification. In the medium term, the U.S., EU, and allies will accelerate rare-earth processing plants in Australia, Canada, and Brazil, yet full independence may take 5–10 years. European defense and automotive sectors face immediate compliance risk, while U.S. munitions programs could encounter material bottlenecks. If strictly enforced, China’s rules may grant it short-term leverage in trade talks and longer-term influence over global green-tech manufacturing. Watch indicators: (1) approval rates for export licenses post-December 1, (2) tariff reciprocity in U.S.–China negotiations, (3) investment flows into non-Chinese refineries, and (4) replication of similar policies in lithium or cobalt supply chains.",
+  "sources": [
+  { "name": "Reuters", "url": "" },
+  { "name": "Xinhua", "url": "" },
+  { "name": "Al Jazeera", "url": "" }
+  ],
+  "fieldLocation": "39.90774336128462, 116.3975718311392"
+}

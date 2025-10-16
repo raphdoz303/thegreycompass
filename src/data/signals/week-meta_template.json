@@ -1,0 +1,13 @@
+{
+  "weekNumber": 41,
+  "year": 2025,
+  "dateRange": {
+    "start": "2025-10-07",
+    "end": "2025-10-13"
+  },
+  "weekSynthesis": {
+    "title": "Week 41 Synthesis",
+    "subtitle": "What This Week Reveals",
+    "content": "## Section Title\n\nFirst paragraph with some analysis.\n\nSecond paragraph continuing the thought.\n\n### Subsection\n\n- Bullet point one\n- Bullet point two\n\n## Another Section\n\nMore content here."
+  }
+}
