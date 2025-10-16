@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import NavigationHeader from "@/components/NavigationHeader"; // ADD THIS
+import { Analytics } from "@vercel/analytics/next";
 
 
 export const metadata: Metadata = {
