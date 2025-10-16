@@ -25,6 +25,7 @@ export default function RootLayout({
         <div className="pt-16"> {/* ADD padding-top to account for fixed header */}
           {children}
         </div>
+        <Analytics />
       </body>
     </html>
   );
